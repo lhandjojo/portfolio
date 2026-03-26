@@ -1,111 +1,456 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Portfolio Leo</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonard Handjojo | Business Strategy Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    header {
-      background: #1e293b;
-      padding: 30px 20px;
-    }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    h1 {
-      margin: 0;
-      font-size: 32px;
-    }
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    p {
-      color: #94a3b8;
-    }
+        .experience-border {
+            border-left: 2px solid #3b82f6;
+        }
 
-    .container {
-      padding: 40px 20px;
-    }
+        .nav-link:hover {
+            color: #3b82f6;
+            transition: 0.3s;
+        }
 
-    .profile-img {
-      width: 200px;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
+        .profile-container {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* Rasio 1:1 */
+            overflow: hidden;
+            border-radius: 1.5rem;
+        }
 
-    .section {
-      margin-top: 50px;
-    }
+        .profile-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.08);
+        }
 
-    .gallery {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .gallery img {
-      width: 200px;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    footer {
-      margin-top: 50px;
-      padding: 20px;
-      background: #1e293b;
-      font-size: 14px;
-      color: #64748b;
-    }
-  </style>
+        .image-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            color: #3b82f6;
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-100">
 
-<body>
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-tighter">
+                LEONARD<span class="text-blue-500">.H</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-slate-400 items-center">
+                <a href="#home" class="nav-link text-white" data-i18n="nav_home">Beranda</a>
+                <a href="#about" class="nav-link" data-i18n="nav_about">Tentang</a>
+                <a href="#expertise" class="nav-link" data-i18n="nav_expertise">Keahlian</a>
+                <a href="#experience" class="nav-link" data-i18n="nav_experience">Pengalaman</a>
+                <a href="#contact" class="nav-link" data-i18n="nav_contact">Kontak</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Toggle Bahasa -->
+                <button onclick="toggleLanguage()" class="flex items-center space-x-2 text-slate-300 hover:text-white transition-all bg-slate-800/50 px-3 py-1.5 rounded-full border border-white/10">
+                    <i class="fas fa-globe text-blue-500"></i>
+                    <span id="lang-btn-text" class="text-xs font-bold tracking-widest">EN</span>
+                </button>
+                <a href="mailto:hanbianli@gmail.com" class="hidden sm:inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-blue-600/20" data-i18n="nav_hire">
+                    Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<header>
-  <h1>Portfolio Saya</h1>
-  <p>Simple. Clean. Professional.</p>
-</header>
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute top-20 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-10 left-0 w-72 h-72 bg-purple-600/10 rounded-full blur-[100px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div>
+                <span class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6" data-i18n="hero_badge">
+                    C-Level Eksekutif
+                </span>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    Leonard <br><span class="gradient-text">Handjojo</span>
+                </h1>
+                <p class="text-xl text-slate-400 mb-10 max-w-lg leading-relaxed" data-i18n="hero_desc">
+                    Konsultan Strategi Bisnis dengan pengalaman kepemimpinan selama 27 tahun dalam transformasi operasional dan pertumbuhan berkelanjutan.
+                </p>
+                <div class="flex flex-wrap gap-5">
+                    <a href="#contact" class="bg-white text-slate-950 px-8 py-4 rounded-xl font-bold hover:bg-slate-200 transition-all flex items-center shadow-2xl shadow-white/5">
+                        <span data-i18n="hero_cta">Mulai Konsultasi</span> <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                    <div class="flex items-center space-x-5 px-4">
+                        <a href="https://linkedin.com/in/leonard-handjojo" target="_blank" class="text-slate-400 hover:text-white text-3xl transition-all">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative group max-w-md mx-auto md:mr-0">
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                <div class="relative bg-slate-900 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                    <div class="profile-container">
+                        <div class="image-fallback">LH</div>
+                        <img src="Office.png" alt="Leonard Handjojo" class="profile-img" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'">
+                        
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950/95 to-transparent p-8 text-left">
+                            <h3 class="text-2xl font-bold text-white">Leonard Handjojo</h3>
+                            <p class="text-blue-400 text-sm font-semibold tracking-widest uppercase mt-1">Business Strategy Consultant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="container">
-
-  <!-- PROFILE -->
-  <div class="section">
-    <h2>Tentang Saya</h2>
-    <img src="Office.png" class="profile-img">
-    <p>Halo, saya Leo. Saya tertarik di bidang kreatif, desain, dan pengembangan digital.</p>
-  </div>
-
-  <!-- PROJECT -->
-  <div class="section">
-    <h2>Project Saya</h2>
-    <div class="gallery">
-      <img src="Office.png">
-      <img src="Office.png">
-      <img src="Office.png">
+    <!-- Statistik -->
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-white/10">
+            <div class="text-center">
+                <div class="text-5xl font-bold text-white mb-2 tracking-tighter">27+</div>
+                <div class="text-xs text-slate-500 uppercase tracking-[0.2em] font-bold" data-i18n="stat_1">Tahun Pengalaman</div>
+            </div>
+            <div class="text-center">
+                <div class="text-5xl font-bold text-green-400 mb-2 tracking-tighter">20%</div>
+                <div class="text-xs text-slate-500 uppercase tracking-[0.2em] font-bold" data-i18n="stat_2">Pertumbuhan YoY</div>
+            </div>
+            <div class="text-center">
+                <div class="text-5xl font-bold text-blue-400 mb-2 tracking-tighter">15%</div>
+                <div class="text-xs text-slate-500 uppercase tracking-[0.2em] font-bold" data-i18n="stat_3">Efisiensi Biaya</div>
+            </div>
+            <div class="text-center">
+                <div class="text-5xl font-bold text-white mb-2 tracking-tighter">Expert</div>
+                <div class="text-xs text-slate-500 uppercase tracking-[0.2em] font-bold">AI & Digital</div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- CONTACT -->
-  <div class="section">
-    <h2>Kontak</h2>
-    <p>Email: emailanda@gmail.com</p>
-    <p>Instagram: @usernameanda</p>
-  </div>
+    <!-- Tentang -->
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8 italic" data-i18n="about_title">Visi Profesional</h2>
+                    <p class="text-slate-400 leading-relaxed text-lg mb-6" data-i18n="about_p1">
+                        Dengan pengalaman lebih dari dua dekade sebagai pemimpin eksekutif, saya membantu perusahaan menavigasi kompleksitas operasional melalui strategi yang terukur.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed text-lg" data-i18n="about_p2">
+                        Fokus utama saya adalah mengintegrasikan <strong>teknologi AI</strong> dan <strong>efisiensi operasional</strong> untuk memastikan bisnis Anda siap menghadapi tantangan masa depan.
+                    </p>
+                </div>
+                <div class="space-y-6">
+                    <div class="glass-card p-8 rounded-2xl border-l-4 border-l-blue-600 shadow-xl">
+                        <h4 class="font-bold text-blue-400 text-xl mb-4">Strategic Advisory</h4>
+                        <ul class="text-slate-300 space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-double mt-1.5 mr-4 text-blue-500"></i>
+                                <span data-i18n="about_li_1">Restrukturisasi operasional UKM untuk efisiensi digital.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-double mt-1.5 mr-4 text-blue-500"></i>
+                                <span data-i18n="about_li_2">Analisis kelayakan pasar dan manajemen risiko bagi investor.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-double mt-1.5 mr-4 text-blue-500"></i>
+                                <span data-i18n="about_li_3">Permodelan finansial strategis untuk kesiapan pendanaan.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- Keahlian -->
+    <section id="expertise" class="py-32 bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl font-bold mb-5" data-i18n="exp_title">Area Keahlian</h2>
+                <div class="w-24 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-10 text-center">
+                <div class="group p-10 rounded-3xl hover:bg-slate-800 transition-all border border-white/5 hover:border-blue-500/30">
+                    <div class="w-20 h-20 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-8 text-3xl group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:rotate-6">
+                        <i class="fas fa-chess-knight"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="exp_1_title">Bisnis Strategi</h3>
+                    <p class="text-slate-500 leading-relaxed" data-i18n="exp_1_desc">Merancang visi jangka panjang dan peta jalan operasional yang terukur.</p>
+                </div>
 
-<footer>
-  © 2026 Leo Portfolio
-</footer>
+                <div class="group p-10 rounded-3xl hover:bg-slate-800 transition-all border border-white/5 hover:border-purple-500/30">
+                    <div class="w-20 h-20 bg-purple-500/10 text-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-8 text-3xl group-hover:bg-purple-600 group-hover:text-white transition-all transform group-hover:rotate-6">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="exp_2_title">Transformasi</h3>
+                    <p class="text-slate-500 leading-relaxed" data-i18n="exp_2_desc">Restrukturisasi tim dan proses untuk efisiensi maksimum di era digital.</p>
+                </div>
 
+                <div class="group p-10 rounded-3xl hover:bg-slate-800 transition-all border border-white/5 hover:border-green-500/30">
+                    <div class="w-20 h-20 bg-green-500/10 text-green-500 rounded-2xl flex items-center justify-center mx-auto mb-8 text-3xl group-hover:bg-green-600 group-hover:text-white transition-all transform group-hover:rotate-6">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Go-to-Market</h3>
+                    <p class="text-slate-500 leading-relaxed" data-i18n="exp_3_desc">Meluncurkan produk atau memasuki pasar baru dengan risiko minimal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pengalaman -->
+    <section id="experience" class="py-32">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-20 text-center italic" data-i18n="journey_title">Executive Journey</h2>
+            
+            <div class="space-y-16">
+                <!-- Utama -->
+                <div class="relative pl-12 experience-border">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.6)]"></div>
+                    <div class="mb-2 text-sm font-bold text-blue-400 tracking-widest uppercase">2021 — 2024</div>
+                    <h3 class="text-2xl font-bold text-white mb-1 uppercase tracking-tight">Chief Operating Officer</h3>
+                    <div class="text-slate-400 font-semibold mb-6">PT Rakajati Indo Energi | PT Harson Multi Mineral</div>
+                    <ul class="text-slate-500 space-y-3 list-none pl-0 leading-relaxed">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span> <span data-i18n="journey_1_desc1">Menumbuhkan pendapatan 20% YoY melalui efisiensi.</span></li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span> <span data-i18n="journey_1_desc2">Ekspansi ke 2 sektor baru dalam 3 tahun.</span></li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span> <span data-i18n="journey_1_desc3">Meningkatkan produktivitas tim sebesar 25%.</span></li>
+                    </ul>
+                </div>
+
+                <div class="relative pl-12 experience-border">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-slate-800"></div>
+                    <div class="mb-2 text-sm font-bold text-slate-500 tracking-widest uppercase">2017 — 2020</div>
+                    <h3 class="text-2xl font-bold text-white mb-1 uppercase tracking-tight">Marketing & Logistics Leadership</h3>
+                    <div class="text-slate-400 font-semibold mb-4">PT Freshklindo Graha Solusi</div>
+                    <p class="text-slate-500 leading-relaxed" data-i18n="journey_2_desc">Mengoptimalkan pengadaan dan logistik sektor jasa serta memperkuat kemitraan vendor strategis.</p>
+                </div>
+
+                <div class="relative pl-12 experience-border">
+                    <div class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-slate-800"></div>
+                    <div class="mb-2 text-sm font-bold text-slate-500 tracking-widest uppercase">1999 — 2015</div>
+                    <h3 class="text-2xl font-bold text-white mb-1 uppercase tracking-tight">Operations Director</h3>
+                    <div class="text-slate-400 font-semibold mb-4" data-i18n="journey_3_company">Grup Pertambangan Batu Bara</div>
+                    <p class="text-slate-500 leading-relaxed" data-i18n="journey_3_desc">Mengarahkan operasional tambang skala besar dan mengamankan kemitraan strategis bernilai tinggi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="contact" class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-card rounded-[3rem] p-16 overflow-hidden relative border border-white/10 shadow-3xl text-center">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] -mr-40 -mt-40"></div>
+                
+                <h2 class="text-5xl font-bold mb-8 tracking-tight" data-i18n="contact_title">Mari Transformasi Bisnis Anda</h2>
+                <p class="text-slate-400 mb-12 max-w-2xl mx-auto text-lg leading-relaxed" data-i18n="contact_desc">
+                    Siap untuk mengadopsi AI atau merestrukturisasi operasional perusahaan? Saya siap mendiskusikan visi Anda.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-16 max-w-3xl mx-auto">
+                    <a href="mailto:hanbianli@gmail.com" class="flex flex-col items-center p-8 bg-slate-900/50 rounded-3xl hover:bg-slate-800 transition-all border border-white/5 group">
+                        <i class="fas fa-envelope text-blue-500 text-3xl mb-4 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-sm font-bold uppercase tracking-widest text-slate-500" data-i18n="contact_email">Email Utama</span>
+                        <span class="text-white text-lg mt-2">hanbianli@gmail.com</span>
+                    </a>
+                    <a href="tel:+628176333536" class="flex flex-col items-center p-8 bg-slate-900/50 rounded-3xl hover:bg-slate-800 transition-all border border-white/5 group">
+                        <i class="fas fa-phone text-green-500 text-3xl mb-4 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-sm font-bold uppercase tracking-widest text-slate-500" data-i18n="contact_phone">Hubungi Langsung</span>
+                        <span class="text-white text-lg mt-2">(+62) 817-6333-536</span>
+                    </a>
+                </div>
+                
+                <div class="flex justify-center space-x-12">
+                    <a href="https://linkedin.com/in/leonard-handjojo" target="_blank" class="text-slate-500 hover:text-blue-400 transition-all transform hover:scale-125">
+                        <i class="fab fa-linkedin text-5xl"></i>
+                    </a>
+                    <a href="https://wa.me/628176333536" target="_blank" class="text-slate-500 hover:text-green-400 transition-all transform hover:scale-125">
+                        <i class="fab fa-whatsapp text-5xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+            <div class="mb-6 md:mb-0 font-semibold tracking-tighter text-lg text-white">
+                LEONARD<span class="text-blue-500">.H</span>
+            </div>
+            <div class="flex space-x-12 uppercase tracking-[0.3em] text-[10px] font-bold opacity-40">
+                <span>Strategy</span>
+                <span>Leadership</span>
+                <span>AI Expert</span>
+            </div>
+            <div class="mt-6 md:mt-0 font-medium opacity-50">
+                &copy; 2025 Jakarta, Indonesia.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Animasi & Terjemahan -->
+    <script>
+        // Dictionary Terjemahan
+        const translations = {
+            "id": {
+                "nav_home": "Beranda",
+                "nav_about": "Tentang",
+                "nav_expertise": "Keahlian",
+                "nav_experience": "Pengalaman",
+                "nav_contact": "Kontak",
+                "nav_hire": "Hubungi Saya",
+                "hero_badge": "Mantan C-Level Eksekutif",
+                "hero_desc": "Konsultan Strategi Bisnis dengan pengalaman kepemimpinan selama 27 tahun dalam transformasi operasional dan pertumbuhan berkelanjutan.",
+                "hero_cta": "Mulai Konsultasi",
+                "stat_1": "Tahun Pengalaman",
+                "stat_2": "Pertumbuhan YoY",
+                "stat_3": "Efisiensi Biaya",
+                "about_title": "Visi Profesional",
+                "about_p1": "Dengan pengalaman lebih dari dua dekade sebagai pemimpin eksekutif, saya membantu perusahaan menavigasi kompleksitas operasional melalui strategi yang terukur.",
+                "about_p2": "Fokus utama saya adalah mengintegrasikan <strong>teknologi AI</strong> dan <strong>efisiensi operasional</strong> untuk memastikan bisnis Anda siap menghadapi tantangan masa depan.",
+                "about_li_1": "Restrukturisasi operasional UKM untuk efisiensi digital.",
+                "about_li_2": "Analisis kelayakan pasar dan manajemen risiko bagi investor.",
+                "about_li_3": "Permodelan finansial strategis untuk kesiapan pendanaan.",
+                "exp_title": "Area Keahlian",
+                "exp_1_title": "Bisnis Strategi",
+                "exp_1_desc": "Merancang visi jangka panjang dan peta jalan operasional yang terukur.",
+                "exp_2_title": "Transformasi",
+                "exp_2_desc": "Restrukturisasi tim dan proses untuk efisiensi maksimum di era digital.",
+                "exp_3_desc": "Meluncurkan produk atau memasuki pasar baru dengan risiko minimal.",
+                "journey_title": "Perjalanan Eksekutif",
+                "journey_1_desc1": "Menumbuhkan pendapatan 20% YoY melalui efisiensi.",
+                "journey_1_desc2": "Ekspansi ke 2 sektor baru dalam 3 tahun.",
+                "journey_1_desc3": "Meningkatkan produktivitas tim sebesar 25%.",
+                "journey_2_desc": "Mengoptimalkan pengadaan dan logistik sektor jasa serta memperkuat kemitraan vendor strategis.",
+                "journey_3_company": "Grup Pertambangan Batu Bara",
+                "journey_3_desc": "Mengarahkan operasional tambang skala besar dan mengamankan kemitraan strategis bernilai tinggi.",
+                "contact_title": "Mari Transformasi Bisnis Anda",
+                "contact_desc": "Siap untuk mengadopsi AI atau merestrukturisasi operasional perusahaan? Saya siap mendiskusikan visi Anda.",
+                "contact_email": "Email Utama",
+                "contact_phone": "Hubungi Langsung"
+            },
+            "en": {
+                "nav_home": "Home",
+                "nav_about": "About",
+                "nav_expertise": "Expertise",
+                "nav_experience": "Experience",
+                "nav_contact": "Contact",
+                "nav_hire": "Hire Me",
+                "hero_badge": "Former C-Level Executive",
+                "hero_desc": "Business Strategy Consultant with 27 years of executive leadership in operational transformation and sustainable business growth.",
+                "hero_cta": "Start Consultation",
+                "stat_1": "Years Experience",
+                "stat_2": "YoY Growth",
+                "stat_3": "Cost Efficiency",
+                "about_title": "Professional Vision",
+                "about_p1": "With over two decades of experience as an executive leader, I help companies navigate operational complexities through measurable strategies.",
+                "about_p2": "My primary focus is integrating <strong>AI technology</strong> and <strong>operational efficiency</strong> to ensure your business is ready for future challenges.",
+                "about_li_1": "Guided SMEs in restructuring operations for digital efficiency.",
+                "about_li_2": "Advised investors on market entry, feasibility, and risk evaluation.",
+                "about_li_3": "Strategic financial modeling to improve funding readiness.",
+                "exp_title": "Areas of Expertise",
+                "exp_1_title": "Business Strategy",
+                "exp_1_desc": "Designing long-term visions and measurable operational roadmaps.",
+                "exp_2_title": "Transformation",
+                "exp_2_desc": "Restructuring teams and processes for maximum efficiency in the digital era.",
+                "exp_3_desc": "Launching products or entering new markets with minimal risk.",
+                "journey_title": "Executive Journey",
+                "journey_1_desc1": "Grew revenue 20% YoY through operational efficiency.",
+                "journey_1_desc2": "Expanded into 2 new sectors within 3 years.",
+                "journey_1_desc3": "Boosted team productivity by 25%.",
+                "journey_2_desc": "Optimized procurement and logistics in the services sector and strengthened strategic vendor partnerships.",
+                "journey_3_company": "Coal Mining Group",
+                "journey_3_desc": "Directed large-scale mining operations and secured high-value strategic partnerships.",
+                "contact_title": "Let's Transform Your Business",
+                "contact_desc": "Ready to adopt AI or restructure your company's operations? I am ready to discuss your vision.",
+                "contact_email": "Primary Email",
+                "contact_phone": "Direct Contact"
+            }
+        };
+
+        // Status bahasa saat ini
+        let currentLang = 'id';
+
+        // Fungsi Toggle Bahasa
+        function toggleLanguage() {
+            // Ubah bahasa
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            
+            // Ubah teks tombol (menampilkan bahasa lawan yang bisa dipilih)
+            document.getElementById('lang-btn-text').innerText = currentLang === 'id' ? 'EN' : 'ID';
+
+            // Loop melalui semua elemen dengan atribut data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    // Gunakan innerHTML agar tag <strong> dll tetap berfungsi
+                    element.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+
+        // Animasi Scroll (Telah ada sebelumnya)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = { threshold: 0.15 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = "0";
+                section.style.transform = "translateY(30px)";
+                section.style.transition = "all 1s ease-out";
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
